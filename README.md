@@ -9,6 +9,24 @@ on real mobile browsers — not Playwright's emulation, not native shells —
 and is structured so the same suite can run on either platform with a
 single npm script swap.
 
+## Stack
+
+| Layer | Choice | Version |
+|---|---|---|
+| Test runner | [WebdriverIO](https://webdriver.io/) | `9.32.x` |
+| Mobile automation | [Appium 2](https://appium.io/) + [`xcuitest`](https://github.com/appium/appium-xcuitest-driver) (iOS) / [`uiautomator2`](https://github.com/appium/appium-uiautomator2-driver) (Android) | `2.19.x` · `7.35.x` · `4.2.x` |
+| Languages | [TypeScript](https://www.typescriptlang.org/) (ESM, strict) | `5.9.x` |
+| Test framework | [Mocha](https://mochajs.org/) + [`expect-webdriverio`](https://github.com/webdriverio/expect-webdriverio) | wdio `9.32.x` · `^6.0.9` |
+| Reporting | [`@wdio/spec-reporter`](https://webdriver.io/docs/spec-reporter) (stdout) + [`@wdio/allure-reporter`](https://webdriver.io/docs/allure-reporter) + [`allure-commandline`](https://www.npmjs.com/package/allure-commandline) | `9.32.x` · `^2.27.0` |
+| Local server | [`http-server`](https://www.npmjs.com/package/http-server) | `^14.1.1` |
+| Test data | [`faker`](https://www.npmjs.com/package/faker) + a localStorage-backed store seeded by fixtures | `^5.5.3` |
+| Env config | [`dotenv`](https://www.npmjs.com/package/dotenv) → `wdio.{ios,android}.conf.ts` | `^16.4.5` |
+| Design pattern | Page Object Model (15 pages + 6 components) | — |
+| CI shell | Node `>=20`, Xcode `16+` with iOS `26` runtime, Android Studio with Android `15` system image | — |
+
+All stack choices are pinned in `package.json`; no global packages are
+required except Appium itself and its drivers (see [Prerequisites](#prerequisites)).
+
 ## What's covered
 
 | Area | Spec | Highlights |
