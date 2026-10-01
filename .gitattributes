@@ -1,0 +1,12 @@
+# Disable language detection for the bundled demo fixture —
+# it's a 309KB single-page HTML app we test, not project code.
+# Without this, GitHub labels the whole repo as "HTML" because
+# the fixture outweighs all TS source files combined.
+public/demo.html linguist-detectable=false
+
+# Same for the vendor copy of demo.html.
+public/index.html linguist-detectable=false
+
+# Don't show noisy diffs for the bundled fixture.
+public/demo.html binary
+public/index.html binary
